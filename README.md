@@ -1,10 +1,10 @@
 # LightLoad
 
-**A heavy page costs ₦22 to load in Lagos. Kane proves it, an AI agent fixes it.**
+**A 22 MB page costs ₦22 per visit in Lagos. Kane proves it fails on 3G, an AI agent fixes it.**
 
 A Kane CLI loop that makes websites usable on slow, expensive mobile data.
 
-In Lagos, 1GB of mobile data costs about ₦1,000 and a lot of people browse on patchy 3G. A grocery page that ships 22MB of full-size photos, fonts and unused JavaScript costs the shopper ₦22 just to open the home page, and takes minutes to load. Lighthouse scores don't show that. LightLoad does: Kane CLI runs a real user task through a throttled connection and fails the page if the task is too slow or too heavy. An AI coding agent reads Kane's failure, slims the site, and Kane re-tests until it passes. No human edits in between.
+In Lagos, 1GB of mobile data costs about ₦1,000 and a lot of people browse on patchy 3G. A grocery page that ships 22MB of full-size photos, fonts and unused JavaScript would cost the shopper about ₦22 to open in full, and takes minutes to load. Lighthouse scores don't show that. LightLoad does: Kane CLI runs a real user task through a throttled connection and fails the page if the task is too slow or too heavy. An AI coding agent reads Kane's failure, slims the site, and Kane re-tests until it passes. No human edits in between.
 
 ## The loop
 
@@ -92,12 +92,16 @@ Same task, same throttle (3G preset: 400 kbps down, 400 ms latency), Kane CLI 0.
 | | Before (run #1, tag `heavy-baseline`) | After (run #2, one agent fix) |
 |---|---|---|
 | Kane verdict | **FAIL** (exit 3) | **PASS** (exit 0) |
-| What Kane saw | Stuck on the home page: render-blocking lodash + moment and 2 MB of TTF fonts held the page, Kane's first screenshot "waited 60 seconds for fonts" and timed out. No shopping step ran. | Searched rice, added to cart, went to cart, reached checkout |
+| What Kane saw | Stuck on the home page: render-blocking lodash + moment and 2 MB of TTF fonts held the page, Kane's screenshot timed out after 60 seconds ("Timeout 60000ms exceeded … waiting for fonts to load"). No shopping step ran. | Searched rice, added to cart, went to cart, reached checkout |
 | Kane run time | 145s | 62.9s |
 | Network wait (proxy) | 152.47s (budget 30s) | 10.53s |
 | Data sent to the phone | 2.26 MB before Kane gave up (budget 1 MB). The full heavy home page is ~22.5 MB (multi-MB original photos). | 0.29 MB for the whole task |
 | Cost per visit (₦1,000/GB) | ₦2.21, and still no checkout | ₦0.29 |
 | Per 1,000 visits | ₦2,206 | ₦286 |
+
+**How to read run #1:** Kane classed run #1 as a screenshot timeout (`infra_error.screenshot_failed` in `reports/run-1.ndjson`). The cause was the page itself: 2.3 MB of render-blocking JavaScript and 2 MB of web fonts that never finished loading on 3G. The shopper saw a blank screen, and after 152 s of network time Kane still could not capture the page. After the agent's fix, Kane completed the whole task.
+
+**Why run #2 passes:** "It takes longer than 30 seconds" in Kane's step log is the condition Kane tests, not its verdict. Kane measured the checkout page's load time itself, 2.73 s (`final_state.checkout_page_load_time_seconds` in `reports/run-2.ndjson`), so the condition is false and the run passes. Kane's 62.9 s run time includes its own AI thinking between clicks. The throttle's network wait was 10.53 s.
 
 **93% less waiting, 87% less data**, and the shopper actually reaches checkout. The fix keeps the same design and the same photos, just right-sized WebP versions of them.
 
@@ -126,7 +130,7 @@ Before vs after, side by side: https://hauwarh.github.io/LightLoad/ ([before](ht
 
 > **Note for judges:** both pages look the same on fast Wi-Fi, because the design is identical; only the weight differs. To feel the difference, open them on slow mobile data, or in Chrome DevTools > Network > "Slow 3G". The before home page is ~22.5 MB; the after shop is ~0.3 MB for the whole task.
 
-Demo video: link coming soon (YouTube).
+Demo video: [LightLoad demo on YouTube](https://youtu.be/4tL02b2EDrk)
 
 ## Self-test (no Kane credits needed)
 
