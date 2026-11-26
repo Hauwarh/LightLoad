@@ -1,0 +1,1 @@
+webp images at display size, drop unused lodash/moment/fonts, defer js, gzip
