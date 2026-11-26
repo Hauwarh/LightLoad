@@ -1,11 +1,11 @@
 // FreshMart app logic. This is the only script the pages actually need.
 var PRODUCTS = [
-  { id: "rice", name: "Long Grain Rice (5kg)", price: 9500, img: "img/rice.jpg" },
-  { id: "beans", name: "Honey Beans (2kg)", price: 4200, img: "img/beans.jpg" },
-  { id: "garri", name: "Ijebu Garri (2kg)", price: 2800, img: "img/garri.jpg" },
-  { id: "palm-oil", name: "Palm Oil (1L)", price: 3100, img: "img/palm-oil.jpg" },
-  { id: "tomatoes", name: "Fresh Tomatoes (basket)", price: 6000, img: "img/tomatoes.jpg" },
-  { id: "yam", name: "Yam Tuber", price: 3500, img: "img/yam.jpg" }
+  { id: "rice", name: "Long Grain Rice (5kg)", price: 9500, img: "img/rice.webp" },
+  { id: "beans", name: "Honey Beans (2kg)", price: 4200, img: "img/beans.webp" },
+  { id: "garri", name: "Ijebu Garri (2kg)", price: 2800, img: "img/garri.webp" },
+  { id: "palm-oil", name: "Palm Oil (1L)", price: 3100, img: "img/palm-oil.webp" },
+  { id: "tomatoes", name: "Fresh Tomatoes (basket)", price: 6000, img: "img/tomatoes.webp" },
+  { id: "yam", name: "Yam Tuber", price: 3500, img: "img/yam.webp" }
 ];
 function naira(n) { return "₦" + n.toLocaleString("en-NG"); }
 function getCart() { try { return JSON.parse(localStorage.getItem("cart") || "[]"); } catch (e) { return []; } }
@@ -17,7 +17,7 @@ function addToCart(id) {
 function updateCount() { var n = getCart().length; var el = document.getElementById("cart-count"); if (el) el.textContent = n;
   var all = document.querySelectorAll(".cart-count"); for (var i = 0; i < all.length; i++) all[i].textContent = n; }
 function card(p) {
-  return '<div class="card"><a class="card-img" href="product.html?id=' + p.id + '"><img src="' + p.img + '" alt="' + p.name + '"></a>' +
+  return '<div class="card"><a class="card-img" href="product.html?id=' + p.id + '"><img loading="lazy" decoding="async" width="320" height="320" src="' + p.img + '" alt="' + p.name + '"></a>' +
     '<div class="card-body"><h3>' + p.name + '</h3><span class="price">' + naira(p.price) + '</span>' +
     '<button onclick="addToCart(\'' + p.id + '\')">Add to cart</button></div></div>';
 }
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   if (page === "product") {
     var p = PRODUCTS.filter(function (x) { return x.id === q("id"); })[0] || PRODUCTS[0];
-    document.getElementById("product").innerHTML = '<img src="' + p.img + '" alt="' + p.name + '">' +
+    document.getElementById("product").innerHTML = '<img width="320" height="320" src="' + p.img + '" alt="' + p.name + '">' +
       '<h1>' + p.name + '</h1><p><span class="price">' + naira(p.price) + '</span></p><button class="btn-block" onclick="addToCart(\'' + p.id + '\')">Add to cart</button>';
   }
   if (page === "cart" || page === "checkout") {

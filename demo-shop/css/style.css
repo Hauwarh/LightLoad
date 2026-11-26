@@ -1,9 +1,6 @@
-@font-face { font-family: "Market"; src: url("../fonts/DejaVuSans.ttf") format("truetype"); font-weight: 400; }
-@font-face { font-family: "Market"; src: url("../fonts/DejaVuSans-Bold.ttf") format("truetype"); font-weight: 700; }
-@font-face { font-family: "Market"; src: url("../fonts/DejaVuSans-Oblique.ttf") format("truetype"); font-style: italic; }
 :root { --green: #0e6b39; --green-dark: #0a4f2a; --leaf: #e8f4ec; --sun: #f5b82e; --ink: #1c2620; --muted: #6b766f; --bg: #f6f7f4; --card: #fff; --radius: 16px; --shadow: 0 6px 20px rgba(16, 40, 24, .08); }
 * { box-sizing: border-box; }
-body { margin: 0; font-family: "Market", sans-serif; color: var(--ink); background: var(--bg); line-height: 1.45; -webkit-font-smoothing: antialiased; padding-bottom: 84px; }
+body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.45; -webkit-font-smoothing: antialiased; padding-bottom: 84px; }
 h1 { font-size: 24px; margin: 18px 0 12px; letter-spacing: -.3px; }
 h2 { font-size: 19px; margin: 0; letter-spacing: -.2px; }
 .muted { color: var(--muted); font-size: 13px; }

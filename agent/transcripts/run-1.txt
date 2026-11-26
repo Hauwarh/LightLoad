@@ -1,0 +1,2 @@
+handoff: prompt published to agent/inbox/prompt.md at 2026-11-26T14:16:52Z, waiting for agent
+handoff: agent finished at 2026-11-26T14:17:14Z: right-sized webp photos, drop unused lodash/moment/fonts, defer js, gzip

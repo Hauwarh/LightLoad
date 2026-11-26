@@ -5,15 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Checkout | FreshMart Lagos</title>
 <link rel="stylesheet" href="css/style.css">
-<script src="vendor/lodash.js"></script>
-<script src="vendor/moment-with-locales.js"></script>
-<script src="js/analytics.js"></script>
-<script src="js/app.js"></script>
+<script defer src="js/app.js"></script>
 </head>
 <body data-page="checkout">
 <header class="topbar"><a class="brand" href="index.html"><span class="logo" aria-hidden="true">FM</span><span class="brand-text"><strong>FreshMart Lagos</strong><small>Market prices, delivered</small></span></a><a class="cart-chip" href="cart.html">Cart (<span id="cart-count">0</span>)</a></header>
 <main>
-<section class="hero"><img src="img/hero-checkout.jpg" alt="Aerial view of Mile 12 food market, Lagos"><div class="hero-text"><span class="badge">Step 2 of 2</span><h2>Almost done</h2><p>Tell us where to deliver.</p></div></section>
+<section class="hero"><img src="img/hero-checkout.webp" width="800" height="400" fetchpriority="high" alt="Aerial view of Mile 12 food market, Lagos"><div class="hero-text"><span class="badge">Step 2 of 2</span><h2>Almost done</h2><p>Tell us where to deliver.</p></div></section>
 <h1>Checkout</h1>
 <div class="panel"><h3 class="panel-title">Order summary</h3><div id="lines"></div></div>
 <form class="panel" onsubmit="event.preventDefault(); document.getElementById('done').hidden=false;">
