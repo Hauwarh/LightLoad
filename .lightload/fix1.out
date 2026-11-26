@@ -1,3 +1,0 @@
-fix: prompt for Kane run #1 written to agent/prompts/run-1.md
-fix: running agent 'custom' (transcript: agent/transcripts/run-1.txt)
-fix: committed 8135754: fix: webp images at display size, drop unused lodash/moment/fonts, defer js, gzip (Kane run #1 failed: 152.59s, 2.25MB, ₦2.20)

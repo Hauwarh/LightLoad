@@ -14,11 +14,12 @@ function addToCart(id) {
   var c = getCart(); c.push(id); setCart(c);
   var n = document.getElementById("added"); if (n) { n.textContent = "Added to cart"; n.hidden = false; }
 }
-function updateCount() { var el = document.getElementById("cart-count"); if (el) el.textContent = getCart().length; }
+function updateCount() { var n = getCart().length; var el = document.getElementById("cart-count"); if (el) el.textContent = n;
+  var all = document.querySelectorAll(".cart-count"); for (var i = 0; i < all.length; i++) all[i].textContent = n; }
 function card(p) {
-  return '<div class="card"><a href="product.html?id=' + p.id + '"><img loading="lazy" decoding="async" width="300" height="300" src="' + p.img + '" alt="' + p.name + '"></a>' +
-    '<h3>' + p.name + '</h3><div class="price">' + naira(p.price) + '</div>' +
-    '<button onclick="addToCart(\'' + p.id + '\')">Add to cart</button></div>';
+  return '<div class="card"><a class="card-img" href="product.html?id=' + p.id + '"><img loading="lazy" decoding="async" width="320" height="320" src="' + p.img + '" alt="' + p.name + '"></a>' +
+    '<div class="card-body"><h3>' + p.name + '</h3><span class="price">' + naira(p.price) + '</span>' +
+    '<button onclick="addToCart(\'' + p.id + '\')">Add to cart</button></div></div>';
 }
 function q(name) { return new URLSearchParams(location.search).get(name) || ""; }
 document.addEventListener("DOMContentLoaded", function () {
@@ -33,8 +34,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   if (page === "product") {
     var p = PRODUCTS.filter(function (x) { return x.id === q("id"); })[0] || PRODUCTS[0];
-    document.getElementById("product").innerHTML = '<img width="300" height="300" src="' + p.img + '" alt="' + p.name + '" style="width:100%;height:auto">' +
-      '<h1>' + p.name + '</h1><p class="price">' + naira(p.price) + '</p><button onclick="addToCart(\'' + p.id + '\')">Add to cart</button>';
+    document.getElementById("product").innerHTML = '<img width="320" height="320" src="' + p.img + '" alt="' + p.name + '">' +
+      '<h1>' + p.name + '</h1><p><span class="price">' + naira(p.price) + '</span></p><button class="btn-block" onclick="addToCart(\'' + p.id + '\')">Add to cart</button>';
   }
   if (page === "cart" || page === "checkout") {
     var items = getCart().map(function (id) { return PRODUCTS.filter(function (x) { return x.id === id; })[0]; }).filter(Boolean);
