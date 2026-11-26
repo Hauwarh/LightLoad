@@ -1,0 +1,21 @@
+@font-face { font-family: "Market"; src: url("../fonts/DejaVuSans.ttf") format("truetype"); font-weight: 400; }
+@font-face { font-family: "Market"; src: url("../fonts/DejaVuSans-Bold.ttf") format("truetype"); font-weight: 700; }
+@font-face { font-family: "Market"; src: url("../fonts/DejaVuSans-Oblique.ttf") format("truetype"); font-style: italic; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: "Market", sans-serif; color: #1d1d1d; background: #fafaf7; }
+header { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: #14783c; color: #fff; }
+header a { color: #fff; text-decoration: none; font-weight: 700; }
+.hero img { width: 100%; display: block; }
+main { padding: 16px; max-width: 960px; margin: 0 auto; }
+form.search { display: flex; gap: 8px; margin: 12px 0; }
+form.search input { flex: 1; padding: 10px; font-size: 16px; border: 1px solid #bbb; border-radius: 6px; }
+button, .btn { padding: 10px 14px; font-size: 16px; background: #14783c; color: #fff; border: 0; border-radius: 6px; cursor: pointer; text-decoration: none; display: inline-block; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+.card { background: #fff; border: 1px solid #e3e3dc; border-radius: 8px; padding: 8px; }
+.card img { width: 100%; display: block; border-radius: 6px; }
+.card h3 { margin: 8px 0 4px; font-size: 16px; }
+.price { font-weight: 700; color: #14783c; }
+.cart-line { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e3e3dc; }
+.notice { background: #fff4c2; padding: 8px 12px; border-radius: 6px; margin: 8px 0; }
+label { display: block; margin: 10px 0 4px; }
+input[type=text], input[type=tel] { width: 100%; padding: 10px; font-size: 16px; border: 1px solid #bbb; border-radius: 6px; }
