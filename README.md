@@ -108,7 +108,7 @@ Same task, same throttle (3G preset: 400 kbps down, 400 ms latency), Kane CLI 0.
 
 Live demo (before vs after, open on your phone): https://hauwarh.github.io/LightLoad/
 
-Demo video: _link_
+Demo video: link coming soon (YouTube).
 
 ## Self-test (no Kane credits needed)
 
