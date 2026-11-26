@@ -5,13 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Product | FreshMart Lagos</title>
 <link rel="stylesheet" href="css/style.css">
-<script defer src="js/app.js"></script>
+<script src="vendor/lodash.js"></script>
+<script src="vendor/moment-with-locales.js"></script>
+<script src="js/analytics.js"></script>
+<script src="js/app.js"></script>
 </head>
 <body data-page="product">
-<header><a href="index.html">FreshMart Lagos</a><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></header>
+<header class="topbar"><a class="brand" href="index.html"><span class="logo" aria-hidden="true">FM</span><span class="brand-text"><strong>FreshMart Lagos</strong><small>Market prices, delivered</small></span></a><a class="cart-chip" href="cart.html">Cart (<span id="cart-count">0</span>)</a></header>
 <main>
 <p class="notice" id="added" hidden></p>
-<div id="product"></div>
-<p><a class="btn" href="cart.html">Go to cart</a></p>
+<div id="product" class="panel"></div>
+<p class="actions"><a class="btn btn-outline" href="cart.html">Go to cart</a></p>
 </main>
+<a class="fab" href="cart.html"><span class="fab-icon" aria-hidden="true">&#128722;</span> View cart &middot; <span class="cart-count">0</span> items</a>
 </body></html>
