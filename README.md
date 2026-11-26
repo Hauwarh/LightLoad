@@ -106,6 +106,8 @@ Same task, same throttle (3G preset: 400 kbps down, 400 ms latency), Kane CLI 0.
 
 **Agent used for this run:** Grok Bot, an AI agent, through `LIGHTLOAD_AGENT=custom LIGHTLOAD_AGENT_CMD="bash agent/handoff.sh"`. `agent/fix.sh` built the prompt from Kane's report and published it to the agent automatically; the agent edited only `demo-shop/`, and `fix.sh` made the commit. The same step runs with Claude Code, Cursor (`cursor-agent`) or Codex by setting `LIGHTLOAD_AGENT`.
 
+Live demo (before vs after, open on your phone): https://hauwarh.github.io/LightLoad/
+
 Demo video: _link_
 
 ## Self-test (no Kane credits needed)
