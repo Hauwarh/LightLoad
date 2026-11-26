@@ -17,6 +17,19 @@ flowchart LR
   B -- yes --> E[before/after card]
 ```
 
+## Reproduce our result (for judges)
+
+```bash
+npm install -g @testmuai/kane-cli && kane-cli login   # your own TestMu account
+git clone https://github.com/Hauwarh/LightLoad && cd LightLoad
+./lightload reset                                     # put the shop back to the heavy version
+git commit -am "back to heavy baseline"               # fix.sh commits on top of this
+./lightload test                                      # Kane run on the heavy shop: expect FAIL
+./loop.sh                                             # agent fixes it, Kane re-tests: expect PASS
+```
+
+Needs Node 18+, Chrome, git and one agent CLI (`LIGHTLOAD_AGENT=claude|cursor|codex`). To check only the failing run, stop after `./lightload test`. Your reports land in `reports/run-N.*` next to ours. Timings vary a little by machine, but the heavy shop should fail the 30 s / 1 MB budget and the fixed one should pass.
+
 ## Quickstart
 
 ```bash
