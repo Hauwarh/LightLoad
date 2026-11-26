@@ -1,0 +1,62 @@
+{
+  "network": "3g",
+  "preset": {
+    "down_kbps": 400,
+    "latency_ms": 400
+  },
+  "requests": 19,
+  "bytes_total": 2362820,
+  "mb_total": 2.253,
+  "busy_seconds": 152.59,
+  "span_seconds": 76.2,
+  "files": [
+    {
+      "path": "/vendor/moment-with-locales.js",
+      "bytes": 1265988,
+      "requests": 2,
+      "type": "application/javascript; charset=utf-8",
+      "encoding": "identity",
+      "status": 200
+    },
+    {
+      "path": "/vendor/lodash.js",
+      "bytes": 1088706,
+      "requests": 2,
+      "type": "application/javascript; charset=utf-8",
+      "encoding": "identity",
+      "status": 200
+    },
+    {
+      "path": "/js/app.js",
+      "bytes": 3587,
+      "requests": 2,
+      "type": "application/javascript; charset=utf-8",
+      "encoding": "identity",
+      "status": 304
+    },
+    {
+      "path": "/css/style.css",
+      "bytes": 2298,
+      "requests": 2,
+      "type": "text/css; charset=utf-8",
+      "encoding": "identity",
+      "status": 304
+    },
+    {
+      "path": "/index.html",
+      "bytes": 1395,
+      "requests": 2,
+      "type": "text/html; charset=utf-8",
+      "encoding": "identity",
+      "status": 304
+    },
+    {
+      "path": "/js/analytics.js",
+      "bytes": 846,
+      "requests": 2,
+      "type": "application/javascript; charset=utf-8",
+      "encoding": "identity",
+      "status": 304
+    }
+  ]
+}
