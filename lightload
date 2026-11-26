@@ -1,0 +1,90 @@
+#!/usr/bin/env bash
+# LightLoad CLI: prove a page works on slow, expensive mobile data.
+#   ./lightload test    start shop + throttled proxy, run Kane through it, write reports/run-N.*
+#   ./lightload fix     hand the latest failed Kane report to the AI agent (agent/fix.sh)
+#   ./lightload loop    test -> fix -> re-test, up to max_rounds fixes, stop when Kane passes
+#   ./lightload card    build card/before-after.html (+ .png) from the first and last runs
+#   ./lightload stop    stop the shop and proxy
+#   ./lightload reset   put demo-shop back to the heavy baseline (git tag heavy-baseline)
+# Env: KANE_BIN (default kane-cli), LIGHTLOAD_NETWORK (3g|2g), LIGHTLOAD_HEADED=1 (show the browser)
+set -euo pipefail
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$ROOT"
+CFG="$ROOT/lightload.config.json"
+KANE_BIN="${KANE_BIN:-kane-cli}"
+SHOP_PORT="${SHOP_PORT:-3000}"
+PROXY_PORT="${PROXY_PORT:-8080}"
+export SHOP_PORT PROXY_PORT
+mkdir -p reports .lightload
+
+cfg() { node -e "const c=require('$CFG'); const v=$1; process.stdout.write(String(v))"; }
+up() { curl -s -o /dev/null --max-time 2 "http://localhost:$1/$2"; }
+
+start_servers() {
+  local net="${LIGHTLOAD_NETWORK:-$(cfg c.network)}"
+  # Restart every time so the proxy picks up the current preset and the shop serves current files.
+  stop_servers
+  node proxy/serve-shop.js demo-shop > .lightload/shop.log 2>&1 & echo $! > .lightload/shop.pid
+  LIGHTLOAD_NETWORK="$net" node proxy/throttle.js > .lightload/proxy.log 2>&1 & echo $! > .lightload/proxy.pid
+  for _ in $(seq 1 50); do up "$SHOP_PORT" "" && up "$PROXY_PORT" "__lightload/stats" && return 0; sleep 0.1; done
+  echo "lightload: servers did not start, see .lightload/*.log" >&2; exit 2
+}
+stop_servers() {
+  for f in .lightload/shop.pid .lightload/proxy.pid; do
+    [[ -f $f ]] && kill "$(cat "$f")" 2>/dev/null || true
+    rm -f "$f"
+  done
+  sleep 0.2
+}
+
+next_run() { local n=1; while [[ -e reports/run-$n.json || -e reports/run-$n.ndjson ]]; do n=$((n+1)); done; echo $n; }
+
+cmd_test() {
+  command -v "$KANE_BIN" >/dev/null || { echo "lightload: '$KANE_BIN' not found. Install Kane CLI: npm install -g @testmuai/kane-cli && kane-cli login" >&2; exit 2; }
+  local n task budget timeout window objective url exit_code=0
+  n=$(next_run)
+  task=$(cfg c.task); budget=$(cfg c.time_budget_s); timeout=$(cfg c.kane_timeout_s); window=$(cfg c.window)
+  objective="$task Fail if it takes longer than $budget seconds."
+  url="http://localhost:$PROXY_PORT/index.html"
+  start_servers
+  trap stop_servers EXIT
+  "$KANE_BIN" config set-window "$window" >/dev/null 2>&1 || echo "lightload: warning: could not set Kane window to $window" >&2
+  curl -s -X POST "http://localhost:$PROXY_PORT/__lightload/reset" >/dev/null
+  local headless="--headless"; [[ "${LIGHTLOAD_HEADED:-0}" == "1" ]] && headless=""
+  echo "== LightLoad run #$n on ${LIGHTLOAD_NETWORK:-$(cfg c.network)} =="
+  echo "Kane objective: $objective"
+  # Kane streams NDJSON on stdout (saved as proof); its human log goes to stderr.
+  set +e
+  KANE_CLI_USER_AGENT="${KANE_CLI_USER_AGENT:-lightload}" "$KANE_BIN" run "$objective" --url "$url" --agent $headless --timeout "$timeout" \
+    < /dev/null 2> "reports/run-$n.kane.log" | tee "reports/run-$n.ndjson" | node scripts/progress.js
+  exit_code=${PIPESTATUS[0]}
+  set -e
+  curl -s "http://localhost:$PROXY_PORT/__lightload/stats" > "reports/run-$n.bytes.json"
+  node scripts/report.js "$n" "$exit_code"
+  stop_servers; trap - EXIT
+  node -e "process.exit(require('./reports/run-$n.json').verdict==='pass'?0:1)"
+}
+
+cmd_reset() {
+  git rev-parse -q --verify refs/tags/heavy-baseline >/dev/null || { echo "lightload: no heavy-baseline tag" >&2; exit 2; }
+  git checkout heavy-baseline -- demo-shop
+  # Files the agent added (e.g. .webp, .gz) are not in the baseline; move them aside instead of deleting.
+  local extra; extra=$(git ls-files --others --exclude-standard demo-shop; git diff --name-only --diff-filter=A heavy-baseline -- demo-shop)
+  if [[ -n "$extra" ]]; then
+    local dest=".lightload/removed-$(date +%s)"; mkdir -p "$dest"
+    while read -r f; do [[ -n $f && -e $f ]] && { mkdir -p "$dest/$(dirname "$f")"; git rm -q --cached "$f" 2>/dev/null || true; mv "$f" "$dest/$f"; }; done <<< "$extra"
+    echo "Moved files added after the baseline to $dest"
+  fi
+  echo "demo-shop is back to the heavy baseline. Commit it to start a fresh loop."
+}
+
+case "${1:-}" in
+  test) cmd_test ;;
+  fix) shift; exec bash agent/fix.sh "$@" ;;
+  loop) exec bash loop.sh ;;
+  card) shift; node scripts/card.js "$@" ;;
+  stop) stop_servers ;;
+  reset) cmd_reset ;;
+  serve) start_servers; echo "shop http://localhost:$SHOP_PORT  throttled http://localhost:$PROXY_PORT  (./lightload stop to end)" ;;
+  *) sed -n '2,10p' "$0"; exit 1 ;;
+esac

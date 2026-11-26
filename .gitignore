@@ -1,0 +1,7 @@
+.lightload/
+node_modules/
+*.kane.log
+.env
+*.env
+secrets/
+.testmuai/

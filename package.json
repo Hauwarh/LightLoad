@@ -1,0 +1,16 @@
+{
+  "name": "lightload",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Kane CLI loop that makes websites usable on slow, expensive mobile data",
+  "license": "MIT",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "test:kane": "./lightload test",
+    "fix": "./lightload fix",
+    "loop": "./loop.sh",
+    "card": "./lightload card",
+    "serve": "./lightload serve",
+    "selftest": "bash test/selftest.sh"
+  }
+}

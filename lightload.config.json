@@ -1,0 +1,14 @@
+{
+  "task": "Search for rice, add it to cart and reach the checkout page.",
+  "time_budget_s": 30,
+  "data_budget_mb": 1.0,
+  "naira_per_gb": 1000,
+  "network": "3g",
+  "presets": {
+    "3g": { "down_kbps": 400, "latency_ms": 400 },
+    "2g": { "down_kbps": 150, "latency_ms": 800 }
+  },
+  "window": "390x844",
+  "kane_timeout_s": 300,
+  "max_rounds": 3
+}
