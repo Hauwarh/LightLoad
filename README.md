@@ -1,10 +1,10 @@
 # LightLoad
 
-**Your page costs ₦20 to load in Lagos. Kane proves it, an AI agent fixes it.**
+**A heavy page costs ₦22 to load in Lagos. Kane proves it, an AI agent fixes it.**
 
 A Kane CLI loop that makes websites usable on slow, expensive mobile data.
 
-In Lagos, 1GB of mobile data costs about ₦1,000 and a lot of people browse on patchy 3G. A grocery page that ships 20MB of images, fonts and unused JavaScript costs the shopper ₦20 just to reach checkout, and takes minutes to load. Lighthouse scores don't show that. LightLoad does: Kane CLI runs a real user task through a throttled connection and fails the page if the task is too slow or too heavy. An AI coding agent reads Kane's failure, slims the site, and Kane re-tests until it passes. No human edits in between.
+In Lagos, 1GB of mobile data costs about ₦1,000 and a lot of people browse on patchy 3G. A grocery page that ships 22MB of full-size photos, fonts and unused JavaScript costs the shopper ₦22 just to open the home page, and takes minutes to load. Lighthouse scores don't show that. LightLoad does: Kane CLI runs a real user task through a throttled connection and fails the page if the task is too slow or too heavy. An AI coding agent reads Kane's failure, slims the site, and Kane re-tests until it passes. No human edits in between.
 
 ## The loop
 
@@ -57,7 +57,7 @@ Cost = MB used × ₦1,000/GB. All budgets and network presets live in `lightloa
 
 ## What's in the repo
 
-- `demo-shop/`: FreshMart Lagos, a static grocery shop (home, search, product, cart, checkout), made heavy on purpose: 3.5 to 4MB hero JPEGs, 1MB product photos shown at thumbnail size, unused lodash + moment (1.2MB) loaded render-blocking in `<head>`, 2MB of TTF web fonts, no lazy loading.
+- `demo-shop/`: FreshMart Lagos, a static grocery shop (home, search, product, cart, checkout), made heavy on purpose: real Wikimedia Commons food photos served at full size (3.4 to 4MB heroes, 1.5 to 4.5MB product photos shown at card size), unused lodash + moment (1.2MB) loaded render-blocking in `<head>`, 2MB of TTF web fonts, no lazy loading.
 - `proxy/throttle.js`: Node proxy with one shared downstream pipe (like one phone connection), per-request latency, per-file byte counts. `GET /__lightload/stats`, `POST /__lightload/reset`.
 - `proxy/serve-shop.js`: static server. Serves `file.br`/`file.gz` when present and accepted, and long-cache headers under `/static/`, so the agent has real levers.
 - `agent/fix.sh` + `agent/build-prompt.js`: builds the prompt from `run-N.json`, the last 40 lines of Kane's NDJSON, the per-file byte table and the file tree, then runs the agent CLI with it. No copy-paste.
@@ -69,24 +69,24 @@ Cost = MB used × ₦1,000/GB. All budgets and network presets live in `lightloa
 
 - Edits outside `demo-shop/` are reverted after every fix (proxy, budgets, scripts are off limits).
 - The run's evidence is copied aside before the agent starts and restored after, so reports can't be rewritten.
-- The agent never commits. `fix.sh` makes one commit per fix that names the Kane run, e.g. `fix: webp images, drop unused lodash/moment (Kane run #1 failed: 300s, 20.6MB, ₦20.13)`.
+- The agent never commits. `fix.sh` makes one commit per fix that names the Kane run, e.g. `fix: right-sized webp photos, drop unused lodash/moment/fonts, defer js, gzip (Kane run #1 failed: 152.47s, 2.26MB, ₦2.21)`.
 - The next Kane run checks the task still works. A fix that breaks search or checkout fails.
 
 ## Results (real Kane CLI runs, 26 Nov 2026)
 
-Same task, same throttle (3G preset: 400 kbps down, 400 ms latency), Kane CLI 0.10.9 in desktop Chrome at 390x844.
+Same task, same throttle (3G preset: 400 kbps down, 400 ms latency), Kane CLI 0.10.9 in Chrome at 390x844. The shop uses real food photos from Wikimedia Commons ([credits](demo-shop/img/CREDITS.md)).
 
-| | Before (run #1, `heavy-baseline`) | After (run #2, one agent fix) |
+| | Before (run #1, tag `heavy-baseline`) | After (run #2, one agent fix) |
 |---|---|---|
 | Kane verdict | **FAIL** (exit 3) | **PASS** (exit 0) |
-| What Kane saw | Stuck on the home page: "screenshot waited 60 seconds for fonts and then timed out". No shopping step ever ran. | Searched rice, added to cart, reached checkout in 10 steps |
-| Kane run time | 144.6s | 39.5s |
-| Network wait (proxy) | 152.59s (budget 30s) | 6.05s |
-| Data sent to the phone | 2.25 MB before Kane gave up (budget 1 MB; the full heavy home page is ~13 MB) | 0.05 MB for the whole task |
-| Cost per visit (₦1,000/GB) | ₦2.20 and still no checkout | ₦0.05 |
-| Per 1,000 visits | ₦2,201 | ₦48 |
+| What Kane saw | Stuck on the home page: render-blocking lodash + moment and 2 MB of TTF fonts held the page, Kane's first screenshot "waited 60 seconds for fonts" and timed out. No shopping step ran. | Searched rice, added to cart, went to cart, reached checkout |
+| Kane run time | 145s | 62.9s |
+| Network wait (proxy) | 152.47s (budget 30s) | 10.53s |
+| Data sent to the phone | 2.26 MB before Kane gave up (budget 1 MB). The full heavy home page is ~22.5 MB (multi-MB original photos). | 0.29 MB for the whole task |
+| Cost per visit (₦1,000/GB) | ₦2.21, and still no checkout | ₦0.29 |
+| Per 1,000 visits | ₦2,206 | ₦286 |
 
-**96% less waiting, 98% less data.** The heavy shop didn't just load slowly on 3G, it never became usable: render-blocking lodash + moment and 2MB of TTF fonts held the page so long that Kane couldn't take its first screenshot. After the agent's fix, Kane finished the whole task.
+**93% less waiting, 87% less data**, and the shopper actually reaches checkout. The fix keeps the same design and the same photos, just right-sized WebP versions of them.
 
 ![before and after](card/before-after.png)
 
@@ -99,14 +99,19 @@ Same task, same throttle (3G preset: 400 kbps down, 400 ms latency), Kane CLI 0.
 | Prompt the agent got, built automatically from run #1 | [`agent/prompts/run-1.md`](agent/prompts/run-1.md) |
 | Agent handoff transcript | [`agent/transcripts/run-1.txt`](agent/transcripts/run-1.txt) |
 | Fix log | [`agent/log.md`](agent/log.md) |
-| Fix commit citing the Kane run | `fix: webp images at display size, drop unused lodash/moment/fonts, defer js, gzip (Kane run #1 failed: 152.59s, 2.25MB, ₦2.20)` |
+| Fix commit citing the Kane run | `fix: right-sized webp photos, drop unused lodash/moment/fonts, defer js, gzip (Kane run #1 failed: 152.47s, 2.26MB, ₦2.21)` |
 | Kane's raw NDJSON stream, passing run | [`reports/run-2.ndjson`](reports/run-2.ndjson), verdict [`reports/run-2.json`](reports/run-2.json) |
 | Before/after card | [`card/before-after.png`](card/before-after.png), [`card/before-after.html`](card/before-after.html) |
 | Heavy version of the shop | git tag `heavy-baseline` |
+| First loop on the earlier placeholder-image shop (history) | [`reports/archive-placeholder-photos/`](reports/archive-placeholder-photos/) |
 
-**Agent used for this run:** Grok Bot, an AI agent, through `LIGHTLOAD_AGENT=custom LIGHTLOAD_AGENT_CMD="bash agent/handoff.sh"`. `agent/fix.sh` built the prompt from Kane's report and published it to the agent automatically; the agent edited only `demo-shop/`, and `fix.sh` made the commit. The same step runs with Claude Code, Cursor (`cursor-agent`) or Codex by setting `LIGHTLOAD_AGENT`.
+**Agent used:** Grok Bot, an AI agent, through `LIGHTLOAD_AGENT=custom LIGHTLOAD_AGENT_CMD="bash agent/handoff.sh"`. `agent/fix.sh` built the prompt from Kane's report and handed it to the agent automatically; the agent edited only `demo-shop/`, and `fix.sh` made the commit. The same step runs with Claude Code, Cursor (`cursor-agent`) or Codex by setting `LIGHTLOAD_AGENT`.
 
-Live demo (before vs after, open on your phone): https://hauwarh.github.io/LightLoad/
+### Live demo
+
+Before vs after, side by side: https://hauwarh.github.io/LightLoad/ ([before](https://hauwarh.github.io/LightLoad/before/index.html), [after](https://hauwarh.github.io/LightLoad/after/index.html))
+
+> **Note for judges:** both pages look the same on fast Wi-Fi, because the design is identical; only the weight differs. To feel the difference, open them on slow mobile data, or in Chrome DevTools > Network > "Slow 3G". The before home page is ~22.5 MB; the after shop is ~0.3 MB for the whole task.
 
 Demo video: link coming soon (YouTube).
 
