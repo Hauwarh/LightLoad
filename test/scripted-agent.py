@@ -1,5 +1,5 @@
 """STAND-IN for an AI agent, used only by test/selftest.sh to check the fix/commit plumbing.
-It applies a fixed set of slimming edits. The real loop uses Claude Code, Cursor or Codex."""
+It applies a fixed set of slimming edits. The real loop hands the prompt to an AI agent (Grok Bot for this entry; Claude Code, Cursor or Codex also work)."""
 import os, re, sys
 from PIL import Image
 sys.stdin.read()  # the prompt (ignored by this stand-in)
