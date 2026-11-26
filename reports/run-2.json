@@ -1,0 +1,249 @@
+{
+  "run": 2,
+  "timestamp": "2026-11-26T13:24:11.746Z",
+  "git_commit": "8135754",
+  "network": "3g",
+  "network_preset": {
+    "down_kbps": 400,
+    "latency_ms": 400
+  },
+  "task": "Search for rice, add it to cart and reach the checkout page.",
+  "verdict": "pass",
+  "failures": [],
+  "seconds": 6.05,
+  "mb": 0.05,
+  "naira": 0.05,
+  "naira_per_1000_visits": 48,
+  "requests": 33,
+  "budgets": {
+    "time_s": 30,
+    "data_mb": 1,
+    "naira_per_gb": 1000
+  },
+  "checks": {
+    "kane_task": true,
+    "time": true,
+    "data": true
+  },
+  "kane": {
+    "exit_code": 0,
+    "status": "passed",
+    "duration_s": 39.5,
+    "reason": "Objective completed",
+    "one_liner": "reached checkout with rice on the local store site",
+    "summary": "Searched for rice, added rice to the cart, and proceeded to the checkout page.\nThe requested checkout page was reached successfully.",
+    "test_url": "https://test-manager.lambdatest.com/projects/01M8B6B43D8DYDTMKEXTG6K6H0/test-cases/01M8C0CNAMB8W4D8EH90YHF0D2/dashboard/share/US_JOF9EJN5UVNWMR4L3750MJH86AHXRGSHNIRRQHMIUJEIZHCQGF3E6UNK447EEG9H?type=summary&agentView=true&fqdn=summary-page",
+    "session_dir": "/home/box/.testmuai/kaneai/sessions/8f0e84f1-ad80-40ec-8321-ec65137ec59b",
+    "errors": [],
+    "steps": [
+      {
+        "step": 2,
+        "status": "running",
+        "remark": "Step 1"
+      },
+      {
+        "step": 2,
+        "status": "done",
+        "remark": "navigate: Navigate to http://localhost:8080/index.html"
+      },
+      {
+        "step": 3,
+        "status": "running",
+        "remark": "Step 2"
+      },
+      {
+        "step": 3,
+        "status": "done",
+        "remark": "scroll: Scrolling to the Search for rice box"
+      },
+      {
+        "step": 4,
+        "status": "running",
+        "remark": "Step 3"
+      },
+      {
+        "step": 4,
+        "status": "done",
+        "remark": "type: Typing rice in the search box"
+      },
+      {
+        "step": 5,
+        "status": "running",
+        "remark": "Step 4"
+      },
+      {
+        "step": 5,
+        "status": "done",
+        "remark": "click: Clicking Search in the header search form"
+      },
+      {
+        "step": 6,
+        "status": "running",
+        "remark": "Step 5"
+      },
+      {
+        "step": 6,
+        "status": "done",
+        "remark": "scroll: Scrolling to add rice to the cart button"
+      },
+      {
+        "step": 7,
+        "status": "running",
+        "remark": "Step 6"
+      },
+      {
+        "step": 7,
+        "status": "done",
+        "remark": "click: Clicking Add to cart for Long Grain Rice 5kg"
+      },
+      {
+        "step": 8,
+        "status": "running",
+        "remark": "Step 7"
+      },
+      {
+        "step": 8,
+        "status": "done",
+        "remark": "scroll: Scrolling to the checkout link in the cart section"
+      },
+      {
+        "step": 9,
+        "status": "running",
+        "remark": "Step 8"
+      },
+      {
+        "step": 9,
+        "status": "done",
+        "remark": "click: Clicking Go to cart in the search results below the rice item"
+      },
+      {
+        "step": 10,
+        "status": "running",
+        "remark": "Step 9"
+      },
+      {
+        "step": 10,
+        "status": "done",
+        "remark": "click: Clicking Proceed to checkout in the cart summary"
+      },
+      {
+        "step": 11,
+        "status": "running",
+        "remark": "Step 10"
+      },
+      {
+        "step": 11,
+        "status": "done",
+        "remark": "wait: Waiting checkout page is visible"
+      }
+    ],
+    "ndjson": "reports/run-2.ndjson"
+  },
+  "heaviest_files": [
+    {
+      "path": "/img/hero-search.webp",
+      "kb": 10,
+      "type": "image/webp",
+      "encoding": "identity",
+      "requests": 1
+    },
+    {
+      "path": "/img/hero-home.webp",
+      "kb": 10,
+      "type": "image/webp",
+      "encoding": "identity",
+      "requests": 2
+    },
+    {
+      "path": "/img/hero-checkout.webp",
+      "kb": 8,
+      "type": "image/webp",
+      "encoding": "identity",
+      "requests": 1
+    },
+    {
+      "path": "/img/tomatoes.webp",
+      "kb": 3,
+      "type": "image/webp",
+      "encoding": "identity",
+      "requests": 2
+    },
+    {
+      "path": "/img/palm-oil.webp",
+      "kb": 3,
+      "type": "image/webp",
+      "encoding": "identity",
+      "requests": 2
+    },
+    {
+      "path": "/js/app.js",
+      "kb": 3,
+      "type": "application/javascript; charset=utf-8",
+      "encoding": "gzip",
+      "requests": 5
+    },
+    {
+      "path": "/img/rice.webp",
+      "kb": 2,
+      "type": "image/webp",
+      "encoding": "identity",
+      "requests": 3
+    },
+    {
+      "path": "/img/beans.webp",
+      "kb": 2,
+      "type": "image/webp",
+      "encoding": "identity",
+      "requests": 2
+    },
+    {
+      "path": "/img/garri.webp",
+      "kb": 2,
+      "type": "image/webp",
+      "encoding": "identity",
+      "requests": 2
+    },
+    {
+      "path": "/img/yam.webp",
+      "kb": 2,
+      "type": "image/webp",
+      "encoding": "identity",
+      "requests": 2
+    },
+    {
+      "path": "/css/style.css",
+      "kb": 2,
+      "type": "text/css; charset=utf-8",
+      "encoding": "gzip",
+      "requests": 5
+    },
+    {
+      "path": "/index.html",
+      "kb": 1,
+      "type": "text/html; charset=utf-8",
+      "encoding": "gzip",
+      "requests": 2
+    },
+    {
+      "path": "/checkout.html",
+      "kb": 1,
+      "type": "text/html; charset=utf-8",
+      "encoding": "gzip",
+      "requests": 1
+    },
+    {
+      "path": "/search.html",
+      "kb": 1,
+      "type": "text/html; charset=utf-8",
+      "encoding": "gzip",
+      "requests": 1
+    },
+    {
+      "path": "/cart.html",
+      "kb": 1,
+      "type": "text/html; charset=utf-8",
+      "encoding": "gzip",
+      "requests": 1
+    }
+  ]
+}

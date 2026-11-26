@@ -1,0 +1,142 @@
+{
+  "network": "3g",
+  "preset": {
+    "down_kbps": 400,
+    "latency_ms": 400
+  },
+  "requests": 33,
+  "bytes_total": 51514,
+  "mb_total": 0.049,
+  "busy_seconds": 6.05,
+  "span_seconds": 36.55,
+  "files": [
+    {
+      "path": "/img/hero-search.webp",
+      "bytes": 10248,
+      "requests": 1,
+      "type": "image/webp",
+      "encoding": "identity",
+      "status": 200
+    },
+    {
+      "path": "/img/hero-home.webp",
+      "bytes": 9734,
+      "requests": 2,
+      "type": "image/webp",
+      "encoding": "identity",
+      "status": 304
+    },
+    {
+      "path": "/img/hero-checkout.webp",
+      "bytes": 8435,
+      "requests": 1,
+      "type": "image/webp",
+      "encoding": "identity",
+      "status": 200
+    },
+    {
+      "path": "/img/tomatoes.webp",
+      "bytes": 3232,
+      "requests": 2,
+      "type": "image/webp",
+      "encoding": "identity",
+      "status": 304
+    },
+    {
+      "path": "/img/palm-oil.webp",
+      "bytes": 2812,
+      "requests": 2,
+      "type": "image/webp",
+      "encoding": "identity",
+      "status": 304
+    },
+    {
+      "path": "/js/app.js",
+      "bytes": 2603,
+      "requests": 5,
+      "type": "application/javascript; charset=utf-8",
+      "encoding": "gzip",
+      "status": 304
+    },
+    {
+      "path": "/img/rice.webp",
+      "bytes": 2432,
+      "requests": 3,
+      "type": "image/webp",
+      "encoding": "identity",
+      "status": 304
+    },
+    {
+      "path": "/img/beans.webp",
+      "bytes": 2372,
+      "requests": 2,
+      "type": "image/webp",
+      "encoding": "identity",
+      "status": 304
+    },
+    {
+      "path": "/img/garri.webp",
+      "bytes": 2248,
+      "requests": 2,
+      "type": "image/webp",
+      "encoding": "identity",
+      "status": 304
+    },
+    {
+      "path": "/img/yam.webp",
+      "bytes": 2044,
+      "requests": 2,
+      "type": "image/webp",
+      "encoding": "identity",
+      "status": 304
+    },
+    {
+      "path": "/css/style.css",
+      "bytes": 1885,
+      "requests": 5,
+      "type": "text/css; charset=utf-8",
+      "encoding": "gzip",
+      "status": 304
+    },
+    {
+      "path": "/index.html",
+      "bytes": 1024,
+      "requests": 2,
+      "type": "text/html; charset=utf-8",
+      "encoding": "gzip",
+      "status": 304
+    },
+    {
+      "path": "/checkout.html",
+      "bytes": 858,
+      "requests": 1,
+      "type": "text/html; charset=utf-8",
+      "encoding": "gzip",
+      "status": 200
+    },
+    {
+      "path": "/search.html",
+      "bytes": 804,
+      "requests": 1,
+      "type": "text/html; charset=utf-8",
+      "encoding": "gzip",
+      "status": 200
+    },
+    {
+      "path": "/cart.html",
+      "bytes": 610,
+      "requests": 1,
+      "type": "text/html; charset=utf-8",
+      "encoding": "gzip",
+      "status": 200
+    },
+    {
+      "path": "/favicon.ico",
+      "bytes": 173,
+      "requests": 1,
+      "type": "text/plain",
+      "encoding": "identity",
+      "status": 404
+    }
+  ]
+}
