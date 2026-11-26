@@ -1,0 +1,254 @@
+{
+  "run": 2,
+  "timestamp": "2026-11-26T14:18:34.999Z",
+  "git_commit": "1fce50c",
+  "network": "3g",
+  "network_preset": {
+    "down_kbps": 400,
+    "latency_ms": 400
+  },
+  "task": "Search for rice, add it to cart and reach the checkout page.",
+  "verdict": "pass",
+  "failures": [],
+  "seconds": 10.53,
+  "mb": 0.29,
+  "naira": 0.29,
+  "naira_per_1000_visits": 286,
+  "requests": 33,
+  "budgets": {
+    "time_s": 30,
+    "data_mb": 1,
+    "naira_per_gb": 1000
+  },
+  "checks": {
+    "kane_task": true,
+    "time": true,
+    "data": true
+  },
+  "kane": {
+    "exit_code": 0,
+    "status": "passed",
+    "duration_s": 62.9,
+    "reason": "Objective completed",
+    "one_liner": "reached checkout with rice in the cart on the local grocery site",
+    "summary": "You asked to search for rice, add it to the cart, and proceed to checkout.\nRice was added to the cart and the checkout page was reached.\nThe checkout page loaded in about 2.732 seconds, within the 30-second limit.",
+    "test_url": "https://test-manager.lambdatest.com/projects/01M8B6B43D8DYDTMKEXTG6K6H0/test-cases/01M8C3FHRAETAZFAADJXQYQETR/dashboard/share/US_VBDXPZORJ07NAW7D5BZ2GHGWBA5ZD7R0OPCR5RQDFTSL5VP9I801AHQ7FFHCXM2B?type=summary&agentView=true&fqdn=summary-page",
+    "session_dir": "/home/box/.testmuai/kaneai/sessions/c3ef4228-20ba-4cf0-8c89-102cb188c419",
+    "errors": [],
+    "steps": [
+      {
+        "step": 2,
+        "status": "running",
+        "remark": "Step 1"
+      },
+      {
+        "step": 2,
+        "status": "done",
+        "remark": "navigate: Navigate to http://localhost:8080/index.html"
+      },
+      {
+        "step": 3,
+        "status": "running",
+        "remark": "Step 2"
+      },
+      {
+        "step": 3,
+        "status": "done",
+        "remark": "wait: queued plan (2 steps): type \"Search products\"; click \"Search\""
+      },
+      {
+        "step": 4,
+        "status": "running",
+        "remark": "Step 3"
+      },
+      {
+        "step": 4,
+        "status": "done",
+        "remark": "type: Type \"rice\" into \"Search products\""
+      },
+      {
+        "step": 5,
+        "status": "running",
+        "remark": "Step 4"
+      },
+      {
+        "step": 5,
+        "status": "done",
+        "remark": "click: Click \"Search\""
+      },
+      {
+        "step": 6,
+        "status": "running",
+        "remark": "Step 5"
+      },
+      {
+        "step": 6,
+        "status": "done",
+        "remark": "click: Clicking Add to cart"
+      },
+      {
+        "step": 7,
+        "status": "running",
+        "remark": "Step 6"
+      },
+      {
+        "step": 7,
+        "status": "done",
+        "remark": "click: Clicking Go to cart"
+      },
+      {
+        "step": 8,
+        "status": "running",
+        "remark": "Step 7"
+      },
+      {
+        "step": 8,
+        "status": "done",
+        "remark": "click: Clicking Proceed to checkout in the cart total section"
+      },
+      {
+        "step": 9,
+        "status": "running",
+        "remark": "Step 8"
+      },
+      {
+        "step": 9,
+        "status": "done",
+        "remark": "wait: PRIMARY: wait for the Checkout heading to be visible"
+      },
+      {
+        "step": 10,
+        "status": "running",
+        "remark": "Step 9"
+      },
+      {
+        "step": 10,
+        "status": "done",
+        "remark": "analyze: It takes longer than 30 seconds."
+      },
+      {
+        "step": 11,
+        "status": "running",
+        "remark": "Step 10"
+      },
+      {
+        "step": 12,
+        "status": "running",
+        "remark": "Step 11"
+      },
+      {
+        "step": 12,
+        "status": "done",
+        "remark": "wait: Waiting after successful checkout-page verification"
+      }
+    ],
+    "ndjson": "reports/run-2.ndjson"
+  },
+  "heaviest_files": [
+    {
+      "path": "/img/hero-checkout.webp",
+      "kb": 92,
+      "type": "image/webp",
+      "encoding": "identity",
+      "requests": 1
+    },
+    {
+      "path": "/img/hero-search.webp",
+      "kb": 91,
+      "type": "image/webp",
+      "encoding": "identity",
+      "requests": 1
+    },
+    {
+      "path": "/img/tomatoes.webp",
+      "kb": 23,
+      "type": "image/webp",
+      "encoding": "identity",
+      "requests": 2
+    },
+    {
+      "path": "/img/beans.webp",
+      "kb": 22,
+      "type": "image/webp",
+      "encoding": "identity",
+      "requests": 2
+    },
+    {
+      "path": "/img/hero-home.webp",
+      "kb": 21,
+      "type": "image/webp",
+      "encoding": "identity",
+      "requests": 2
+    },
+    {
+      "path": "/img/rice.webp",
+      "kb": 16,
+      "type": "image/webp",
+      "encoding": "identity",
+      "requests": 3
+    },
+    {
+      "path": "/img/yam.webp",
+      "kb": 16,
+      "type": "image/webp",
+      "encoding": "identity",
+      "requests": 2
+    },
+    {
+      "path": "/img/palm-oil.webp",
+      "kb": 6,
+      "type": "image/webp",
+      "encoding": "identity",
+      "requests": 2
+    },
+    {
+      "path": "/img/garri.webp",
+      "kb": 4,
+      "type": "image/webp",
+      "encoding": "identity",
+      "requests": 2
+    },
+    {
+      "path": "/css/style.css",
+      "kb": 3,
+      "type": "text/css; charset=utf-8",
+      "encoding": "gzip",
+      "requests": 5
+    },
+    {
+      "path": "/js/app.js",
+      "kb": 3,
+      "type": "application/javascript; charset=utf-8",
+      "encoding": "gzip",
+      "requests": 5
+    },
+    {
+      "path": "/index.html",
+      "kb": 1,
+      "type": "text/html; charset=utf-8",
+      "encoding": "gzip",
+      "requests": 2
+    },
+    {
+      "path": "/checkout.html",
+      "kb": 1,
+      "type": "text/html; charset=utf-8",
+      "encoding": "gzip",
+      "requests": 1
+    },
+    {
+      "path": "/search.html",
+      "kb": 1,
+      "type": "text/html; charset=utf-8",
+      "encoding": "gzip",
+      "requests": 1
+    },
+    {
+      "path": "/cart.html",
+      "kb": 1,
+      "type": "text/html; charset=utf-8",
+      "encoding": "gzip",
+      "requests": 1
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "network": "3g",
+  "preset": {
+    "down_kbps": 400,
+    "latency_ms": 400
+  },
+  "requests": 33,
+  "bytes_total": 307142,
+  "mb_total": 0.293,
+  "busy_seconds": 10.53,
+  "span_seconds": 40.34,
+  "files": [
+    {
+      "path": "/img/hero-checkout.webp",
+      "bytes": 94055,
+      "requests": 1,
+      "type": "image/webp",
+      "encoding": "identity",
+      "status": 200
+    },
+    {
+      "path": "/img/hero-search.webp",
+      "bytes": 93511,
+      "requests": 1,
+      "type": "image/webp",
+      "encoding": "identity",
+      "status": 200
+    },
+    {
+      "path": "/img/tomatoes.webp",
+      "bytes": 23635,
+      "requests": 2,
+      "type": "image/webp",
+      "encoding": "identity",
+      "status": 304
+    },
+    {
+      "path": "/img/beans.webp",
+      "bytes": 22763,
+      "requests": 2,
+      "type": "image/webp",
+      "encoding": "identity",
+      "status": 304
+    },
+    {
+      "path": "/img/hero-home.webp",
+      "bytes": 21645,
+      "requests": 2,
+      "type": "image/webp",
+      "encoding": "identity",
+      "status": 304
+    },
+    {
+      "path": "/img/rice.webp",
+      "bytes": 15928,
+      "requests": 3,
+      "type": "image/webp",
+      "encoding": "identity",
+      "status": 304
+    },
+    {
+      "path": "/img/yam.webp",
+      "bytes": 15927,
+      "requests": 2,
+      "type": "image/webp",
+      "encoding": "identity",
+      "status": 304
+    },
+    {
+      "path": "/img/palm-oil.webp",
+      "bytes": 5824,
+      "requests": 2,
+      "type": "image/webp",
+      "encoding": "identity",
+      "status": 304
+    },
+    {
+      "path": "/img/garri.webp",
+      "bytes": 3688,
+      "requests": 2,
+      "type": "image/webp",
+      "encoding": "identity",
+      "status": 304
+    },
+    {
+      "path": "/css/style.css",
+      "bytes": 3177,
+      "requests": 5,
+      "type": "text/css; charset=utf-8",
+      "encoding": "gzip",
+      "status": 304
+    },
+    {
+      "path": "/js/app.js",
+      "bytes": 2659,
+      "requests": 5,
+      "type": "application/javascript; charset=utf-8",
+      "encoding": "gzip",
+      "status": 304
+    },
+    {
+      "path": "/index.html",
+      "bytes": 1313,
+      "requests": 2,
+      "type": "text/html; charset=utf-8",
+      "encoding": "gzip",
+      "status": 304
+    },
+    {
+      "path": "/checkout.html",
+      "bytes": 1113,
+      "requests": 1,
+      "type": "text/html; charset=utf-8",
+      "encoding": "gzip",
+      "status": 200
+    },
+    {
+      "path": "/search.html",
+      "bytes": 1020,
+      "requests": 1,
+      "type": "text/html; charset=utf-8",
+      "encoding": "gzip",
+      "status": 200
+    },
+    {
+      "path": "/cart.html",
+      "bytes": 711,
+      "requests": 1,
+      "type": "text/html; charset=utf-8",
+      "encoding": "gzip",
+      "status": 200
+    },
+    {
+      "path": "/favicon.ico",
+      "bytes": 173,
+      "requests": 1,
+      "type": "text/plain",
+      "encoding": "identity",
+      "status": 404
+    }
+  ]
+}
